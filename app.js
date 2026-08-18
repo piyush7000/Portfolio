@@ -558,7 +558,7 @@ window.openProjectModal = function(type) {
           A machine learning and time-series deep learning comparison on historical equity data cleaned and normalized via Pandas & NumPy.
         </p>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+        <div class="modal-grid-2col" style="display:grid; gap:1rem; margin-bottom:1.5rem;">
           <div style="background:rgba(255,255,255,0.03); padding:1rem; border-radius:8px; border:1px solid rgba(255,255,255,0.08);">
             <h5 style="color:#00f2fe; margin-bottom:0.4rem;">Linear Regression</h5>
             <p style="font-size:0.82rem; color:#abb2bf;">Baseline statistical regression on moving averages and lagged features. Fast convergence, but struggles with non-linear market volatility.</p>
