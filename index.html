@@ -61,6 +61,9 @@
         <a href="#skills" class="nav-link"><span class="nav-num">05.</span> Skills</a>
         <a href="#certifications" class="nav-link"><span class="nav-num">06.</span> Certifications</a>
         <a href="#contact" class="nav-link"><span class="nav-num">07.</span> Contact</a>
+        <button class="btn btn-outline-gold mobile-nav-resume" onclick="document.getElementById('openResumeBtn').click();">
+          <i class="fa-solid fa-file-arrow-down"></i> View Official CV / Resume
+        </button>
       </nav>
 
       <div class="header-actions">
@@ -944,6 +947,13 @@
         </div>
         <div id="keyStatusMsg" style="margin-top:0.8rem; font-size:0.82rem; text-align:center;"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- PROJECT DEEP-DIVE MODAL VIEWER -->
+  <div class="modal-backdrop" id="projectModal">
+    <div class="modal-container glass-panel" id="projectModalContent">
+      <!-- Dynamically filled by openProjectModal() -->
     </div>
   </div>
 

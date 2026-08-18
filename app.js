@@ -71,16 +71,33 @@ function initMobileNav() {
   const menu = document.getElementById('navMenu');
   if (!toggle || !menu) return;
 
-  toggle.addEventListener('click', () => {
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     toggle.classList.toggle('active');
     menu.classList.toggle('active');
   });
 
-  menu.querySelectorAll('.nav-link').forEach(link => {
+  menu.querySelectorAll('.nav-link, button').forEach(link => {
     link.addEventListener('click', () => {
       toggle.classList.remove('active');
       menu.classList.remove('active');
     });
+  });
+
+  // Close menu when tapping anywhere outside
+  document.addEventListener('click', (e) => {
+    if (menu.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+      toggle.classList.remove('active');
+      menu.classList.remove('active');
+    }
+  });
+
+  // Close menu on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('active')) {
+      toggle.classList.remove('active');
+      menu.classList.remove('active');
+    }
   });
 }
 
@@ -106,6 +123,9 @@ function initScrollReveal() {
 function initHeroCard3D() {
   const card = document.getElementById('heroCard3d');
   if (!card) return;
+
+  // Disable 3D tilt on touch devices for silky performance
+  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
 
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();

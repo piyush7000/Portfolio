@@ -466,6 +466,10 @@ body.modal-open {
   width: 100%;
 }
 
+.mobile-nav-resume {
+  display: none;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -708,6 +712,8 @@ body.modal-open {
   color: #abb2bf;
   background: rgba(8, 9, 14, 0.6);
   border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  word-break: break-word;
 }
 
 .c-kw { color: #c678dd; }
@@ -1484,7 +1490,7 @@ body.modal-open {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1.8rem;
 }
 
@@ -1557,7 +1563,7 @@ body.modal-open {
 
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1.8rem;
 }
 
@@ -1704,6 +1710,8 @@ body.modal-open {
   font-size: 0.92rem;
   font-weight: 600;
   color: var(--text-primary);
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 .contact-form-wrapper {
@@ -2022,53 +2030,196 @@ body.modal-open {
    RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================================================== */
 
-@media (max-width: 992px) {
+/* Large Tablets & Small Laptops (<= 1024px) */
+@media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
   }
 
   .hero-title {
-    font-size: 2.8rem;
+    font-size: 3rem;
   }
 
   .about-grid, .projects-grid, .contact-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
   .bio-highlights-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-card {
+    padding: 2.8rem 2.2rem;
   }
 }
 
+/* Tablets & Mobile Landscape (<= 768px) */
 @media (max-width: 768px) {
-  .nav-menu {
-    position: fixed;
-    top: 70px;
-    left: 0;
+  html, body {
+    overflow-x: hidden;
     width: 100%;
-    background: rgba(8, 9, 13, 0.98);
+    max-width: 100vw;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 2.1rem;
+  }
+
+  .section-desc {
+    font-size: 0.95rem;
+  }
+
+  /* Navigation Bar */
+  .site-header {
+    padding: 0.75rem 0;
+    background: rgba(8, 9, 13, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    flex-direction: column;
-    padding: 2rem;
-    gap: 1.2rem;
     border-bottom: 1px solid var(--border-subtle);
-    transform: translateY(-120%);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: rgba(8, 9, 13, 0.98);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    flex-direction: column;
+    padding: 1.8rem 1.5rem 2.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-gold);
+    transform: translateY(-130%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 95;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
   }
 
   .nav-menu.active {
     transform: translateY(0);
   }
 
+  .nav-link {
+    font-size: 1.05rem;
+    padding: 0.6rem 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .mobile-nav-resume {
+    display: flex;
+    width: 100%;
+    margin-top: 0.8rem;
+    justify-content: center;
+    padding: 0.75rem 1.2rem;
+  }
+
   .mobile-toggle {
     display: flex;
   }
 
+  /* Hero Section */
+  .hero-section {
+    padding: 6rem 0 3rem;
+    min-height: auto;
+  }
+
   .hero-title {
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 6.5vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero-metrics {
+    width: 100%;
+    justify-content: space-around;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .metric-val {
+    font-size: 1.3rem;
+  }
+
+  .metric-lbl {
+    font-size: 0.68rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.9rem;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1.2rem;
+  }
+
+  .social-links-inline {
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .hologram-card {
+    margin-top: 0.5rem;
+    transform: none !important;
+  }
+
+  .card-code-preview {
+    padding: 1rem;
+    font-size: 0.76rem;
+  }
+
+  .card-status-bar {
+    padding: 0.75rem 1rem;
+    gap: 0.4rem;
+  }
+
+  /* About Section */
+  .about-card {
+    padding: 2rem 1.4rem;
+  }
+
+  .about-bio-card {
+    padding: 2rem 1.4rem;
+  }
+
+  .bio-highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Timeline */
+  .timeline-container {
+    gap: 1.8rem;
   }
 
   .timeline-item {
@@ -2077,39 +2228,465 @@ body.modal-open {
   }
 
   .timeline-dot {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     font-size: 1rem;
   }
 
-  .contact-card {
-    padding: 2rem 1.5rem;
+  .timeline-card {
+    padding: 1.5rem 1.2rem;
   }
 
+  .role-heading {
+    font-size: 1.2rem;
+  }
+
+  .company-sub {
+    font-size: 0.84rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .experience-list li {
+    font-size: 0.88rem;
+  }
+
+  /* Projects */
+  .project-banner {
+    height: 160px;
+  }
+
+  .project-icon-large {
+    font-size: 3.5rem;
+  }
+
+  .project-body {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+  }
+
+  .project-footer {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .project-footer .btn {
+    width: 100%;
+  }
+
+  /* AI Agent Terminal Playground */
+  .terminal-bar {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .terminal-badge {
+    font-size: 0.72rem;
+    order: 3;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.2rem;
+  }
+
+  .terminal-actions {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+    min-height: 240px;
+    max-height: 320px;
+    font-size: 0.82rem;
+  }
+
+  .preset-prompts-bar {
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .preset-btn {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .terminal-input-bar {
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+  }
+
+  #terminalInput {
+    font-size: 0.84rem;
+  }
+
+  /* Skills Filter Tabs & Grid */
+  .skills-filter-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.6rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.45rem;
+  }
+
+  .skills-filter-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .skill-category-card {
+    padding: 1.4rem 1.2rem;
+  }
+
+  /* Certifications */
+  .cert-card {
+    padding: 1.4rem 1.2rem;
+    gap: 1rem;
+  }
+
+  .cert-badge-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+  }
+
+  /* Contact Section */
+  .contact-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .contact-title {
+    font-size: 1.8rem;
+  }
+
+  .contact-item {
+    padding: 0.8rem 1rem;
+    gap: 0.8rem;
+  }
+
+  .c-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+
+  .contact-form-wrapper {
+    padding: 1.5rem 1.2rem;
+  }
+
+  /* Footer */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.2rem;
+  }
+
+  .footer-left {
+    align-items: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+    gap: 1.2rem;
+  }
+
+  /* Floating Controls */
   .floating-controls {
-    bottom: 1rem;
-    right: 1rem;
+    bottom: 1.2rem;
+    right: 1.2rem;
+    gap: 0.6rem;
+  }
+
+  .control-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 0.95rem;
+  }
+
+  .btn-tooltip {
+    display: none !important;
+  }
+
+  /* Ambient Orbs performance */
+  .ambient-orb {
+    width: 260px !important;
+    height: 260px !important;
+    filter: blur(80px);
+    opacity: 0.25;
+  }
+
+  /* Modals */
+  .modal-backdrop {
+    padding: 0.75rem;
   }
 
   .modal-container {
-    max-height: 95vh;
+    max-height: 94vh;
+    border-radius: 12px;
+  }
+
+  .modal-header {
+    padding: 1rem 1.2rem;
   }
 
   .modal-body {
-    padding: 1.2rem;
+    padding: 1.2rem 1rem;
   }
 
   .resume-sheet {
     padding: 1.5rem 1rem;
+    font-size: 0.88rem;
   }
 
   .sheet-two-col {
     grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
 
   .cursor-glow,
   .cursor-dot {
     display: none !important;
+  }
+}
+
+/* Phones & Small Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.9rem;
+  }
+
+  .site-header {
+    padding: 0.65rem 0;
+  }
+
+  .logo-monogram {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+
+  .logo-text .name {
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+
+  .logo-text .tag {
+    font-size: 0.58rem;
+  }
+
+  #openResumeBtn {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.75rem;
+    gap: 0.35rem;
+  }
+
+  .hero-section {
+    padding: 5rem 0 2.5rem;
+  }
+
+  .status-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    gap: 0.4rem;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .metric-sep {
+    display: none;
+  }
+
+  .metric-val {
+    font-size: 1.2rem;
+  }
+
+  .metric-lbl {
+    font-size: 0.62rem;
+    margin-top: 0.15rem;
+  }
+
+  /* Timeline */
+  .timeline-item {
+    grid-template-columns: 32px 1fr;
+    gap: 0.7rem;
+  }
+
+  .timeline-dot {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+  }
+
+  .timeline-card {
+    padding: 1.2rem 0.9rem;
+    border-radius: 12px;
+  }
+
+  .card-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .date-badge {
+    font-size: 0.72rem;
+  }
+
+  /* About */
+  .about-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .about-avatar-wrapper {
+    margin-bottom: 1.2rem;
+  }
+
+  .avatar-ring {
+    width: 110px;
+    height: 110px;
+  }
+
+  .avatar-inner {
+    width: 96px;
+    height: 96px;
+  }
+
+  .avatar-letters {
+    font-size: 2rem;
+  }
+
+  .copy-chip {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.7rem;
+    word-break: break-all;
+  }
+
+  /* Skills & Certs Single Column */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .cert-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .cert-card {
+    padding: 1.2rem 0.9rem;
+  }
+
+  /* Contact */
+  .contact-card {
+    padding: 1.5rem 0.9rem;
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-form-wrapper {
+    padding: 1.2rem 0.9rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px; /* Prevents auto-zoom on iOS */
+    padding: 0.65rem 0.85rem;
+  }
+
+  /* Terminal bar */
+  .preset-btn {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .btn-send span {
+    display: none;
+  }
+
+  .btn-send {
+    padding: 0.6rem 0.9rem;
+  }
+
+  /* Modal Resume Sheet */
+  .sheet-name {
+    font-size: 1.4rem;
+  }
+
+  .sheet-sub {
+    font-size: 0.85rem;
+  }
+
+  .sheet-contacts {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .job-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    font-size: 0.85rem;
+  }
+
+  .job-bullets {
+    padding-left: 1rem;
+    font-size: 0.82rem;
+  }
+
+  .sheet-p {
+    font-size: 0.82rem;
+  }
+
+  .sheet-skills-list p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra Small Phones (<= 360px) */
+@media (max-width: 360px) {
+  .logo-text .name {
+    font-size: 0.75rem;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .metric-val {
+    font-size: 1.05rem;
+  }
+
+  .metric-lbl {
+    font-size: 0.58rem;
   }
 }
 
